@@ -2,11 +2,13 @@
 
 function BinarioADecimal(num) {
 
-  let suma = 0;
-  for (let i = 0; i < num.length; i++) {
-    suma += num[i] * 2 ** (num.length - 1 - i);
+  let dec = 0;
+  let pos = 0;
+  for (let i = num.length - 1; i >= 0; i--) {
+    dec += num[i] * 2 ** pos;
+    pos++;
   }
-  return suma;
+  return dec;
 }
 
 function DecimalABinario(num) {
@@ -19,7 +21,6 @@ function DecimalABinario(num) {
     aux.push(resto);
   }
   return aux.reverse().join("");
-
 }
 
 module.exports = {
