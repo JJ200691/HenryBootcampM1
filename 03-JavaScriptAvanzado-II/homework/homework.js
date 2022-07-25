@@ -45,8 +45,15 @@ function cacheFunction(cb) {
   squareCache(5)    // no volverá a invocar a square, simplemente buscará en la caché cuál es el resultado de square(5) y lo retornará (tip: si usaste un objeto, podés usar hasOwnProperty) 
 
   */
-
+  var cache = {};
+  return function (arg) {
+    if (!cache.hasOwnProperty(arg)) {
+      cache[arg] = cb(arg);
+    }
+    return cache[arg];
+  }
 }
+
 
 // Bind
 
@@ -85,9 +92,9 @@ function crearCadena(delimitadorIzquierda, delimitadorDerecha, cadena) {
   return delimitadorIzquierda + cadena + delimitadorDerecha;
 }
 
-let textoAsteriscos = crearCadena.bind(function () { return "*" });
-let textoGuiones = crearCadena.bind(function () { return "-" });
-let textoUnderscore = crearCadena.bind(function () { return "_" });
+let textoAsteriscos = crearCadena.bind(this, "*", "*");
+let textoGuiones = crearCadena.bind(this, "-", "-");
+let textoUnderscore = crearCadena.bind(this, "_", "_");
 
 // No modifiquen nada debajo de esta linea
 // --------------------------------

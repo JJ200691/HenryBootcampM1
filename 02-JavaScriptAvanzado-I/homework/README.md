@@ -160,10 +160,10 @@ Considerando el siguiente código, ¿Cuál sería el orden en el que se muestra 
 
 ```javascript
 function printing() {
-   console.log(1);
-   setTimeout(function() { console.log(2); }, 1000);
-   setTimeout(function() { console.log(3); }, 0);
-   console.log(4);
+   console.log(1);   //1
+   setTimeout(function() { console.log(2); }, 1000);     //Se delega a la web API, se cuenta el periodo de tiempo establecido y luego imprime el 2
+   setTimeout(function() { console.log(3); }, 0);  //Se delega a la web API y luego imprime 3 antes del 2 ya que no tiene tiempo de espera 
+   console.log(4);   //4
 }
 
 printing();
